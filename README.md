@@ -8,3 +8,8 @@ Write a package that can be used to predict the death of patients after emnergen
 2. Train the model
 3. Predict death by trained model
 4. Show performance of the model
+
+## Group member
+Ruizhi Yuan, Tianbei Zhang, Dezhao Fu
+
+@patrickkwang What do you think about this proposal?

@@ -10,4 +10,4 @@ Write a package that can be used to predict the death of patients after emnergen
 4. Show performance of the model
 
 ## Group member
-Ruizhi Yuan, Tianbei Zhang, Dezhao Fu
+Ruizhi Yuan, Tianbei Zhang

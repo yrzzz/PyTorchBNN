@@ -11,5 +11,3 @@ Write a package that can be used to predict the death of patients after emnergen
 
 ## Group member
 Ruizhi Yuan, Tianbei Zhang, Dezhao Fu
-
-@patrickkwang What do you think about this proposal?

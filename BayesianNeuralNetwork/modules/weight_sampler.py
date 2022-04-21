@@ -5,8 +5,8 @@ import torch.nn as nn
 
 class RandomDistribution(nn.Module):
     """
-        Samples weights for variational inference
-        Calculates the variational posterior part for the loss
+    Samples weights for variational inference
+    Calculates the variational posterior part for the loss
     """
 
     def __init__(self, mu: float, rho: float):
@@ -21,7 +21,7 @@ class RandomDistribution(nn.Module):
         self.pi = np.pi
         self.w = None
         self.sigma = None
-        self.register_buffer('w_eps', torch.Tensor(self.mu.shape))
+        self.register_buffer("w_eps", torch.Tensor(self.mu.shape))
 
     def sample(self):
         """
@@ -42,9 +42,16 @@ class RandomDistribution(nn.Module):
         :return: log_likelihood_posteriors
         """
 
-        assert (self.w is not None), "If W has already been sampled, you can only have a log posterior for it."
+        assert (
+            self.w is not None
+        ), "If W has already been sampled, you can only have a log posterior for it."
         if w is None:
             w = self.w
 
-        log_likelihood_posteriors = -np.log(np.sqrt(2 * self.pi)) - torch.log(self.sigma) - (((w - self.mu) ** 2) / (2 * self.sigma ** 2)) - 0.5
+        log_likelihood_posteriors = (
+            -np.log(np.sqrt(2 * self.pi))
+            - torch.log(self.sigma)
+            - (((w - self.mu) ** 2) / (2 * self.sigma ** 2))
+            - 0.5
+        )
         return log_likelihood_posteriors.sum()

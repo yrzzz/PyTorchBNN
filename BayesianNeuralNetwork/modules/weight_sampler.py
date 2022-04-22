@@ -92,4 +92,4 @@ class PriorDistribution(nn.Module):
 
         prior_p = (self.pi * prob_n1 + (1 - self.pi) * prob_n2) + 1e-6
 
-        return torch.log(prior_p).sum()
+        return (torch.log(prior_p) - 0.5).sum()

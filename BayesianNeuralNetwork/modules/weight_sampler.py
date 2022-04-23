@@ -1,6 +1,7 @@
 import torch
 import numpy as np
 import torch.nn as nn
+import torch.functional as F
 
 
 class TrainablePosteriorDistribution(nn.Module):
@@ -9,7 +10,7 @@ class TrainablePosteriorDistribution(nn.Module):
     Calculates the variational posterior part for the loss
     """
 
-    def __init__(self, mu: float, rho: float):
+    def __init__(self, mu, rho):
         """
         :param mu: the mean for the samples linear transformation parameters
         :param rho: the standard deviation for the samples linear transformation parameters
@@ -27,7 +28,7 @@ class TrainablePosteriorDistribution(nn.Module):
         """
         Samples weights form a Normal distribution, multiplies sigma (a function from a trainable parameter), and adds a mean
         Sets sampled weights as the current weights
-        :return: torch.tensor with same shape as self.mu and self.rho
+        :return: sampled weight
         """
 
         self.w_eps.data.normal_()
@@ -41,28 +42,23 @@ class TrainablePosteriorDistribution(nn.Module):
         :param w: sampled weights
         :return: log_likelihood_posteriors
         """
-
-        assert (
-            self.w is not None
-        ), "If W has already been sampled, you can only have a log posterior for it."
+        assert (self.w is not None), "If W has already been sampled, you can only have a log posterior for it."
         if w is None:
             w = self.w
 
-        log_likelihood_posteriors = (
-            -np.log(np.sqrt(2 * self.pi))
-            - torch.log(self.sigma)
-            - (((w - self.mu) ** 2) / (2 * self.sigma ** 2))
-            - 0.5
-        )
-        return log_likelihood_posteriors.sum()
+        log_posteriors = -np.log(np.sqrt(2 * self.pi)) - torch.log(self.sigma) - (((w - self.mu) ** 2) / (2 * self.sigma ** 2)) - 0.5
+        return log_posteriors.sum()
 
 
 class PriorDistribution(nn.Module):
     """
     Calculate the scale mixture prior
     """
-
-    def __init__(self, pi=1, sigma1=0.1, sigma2=0.001, dist=None):
+    def __init__(self,
+                 pi=1,
+                 sigma1=0.1,
+                 sigma2=0.001,
+                 dist=None):
         super().__init__()
 
         if dist is None:
@@ -90,6 +86,6 @@ class PriorDistribution(nn.Module):
         else:
             prob_n2 = 0
 
-        prior_p = (self.pi * prob_n1 + (1 - self.pi) * prob_n2) + 1e-6
+        prior_pdf = (self.pi * prob_n1 + (1 - self.pi) * prob_n2) + 1e-6
 
-        return (torch.log(prior_p) - 0.5).sum()
+        return (torch.log(prior_pdf) - 0.5).sum()

@@ -10,7 +10,7 @@ class TrainablePosteriorDistribution(nn.Module):
     Calculates the variational posterior part for the loss
     """
 
-    def __init__(self, mu, rho):
+    def __init__(self, mu: float, rho: float):
         """
         :param mu: the mean for the samples linear transformation parameters
         :param rho: the standard deviation for the samples linear transformation parameters
@@ -42,11 +42,18 @@ class TrainablePosteriorDistribution(nn.Module):
         :param w: sampled weights
         :return: log_likelihood_posteriors
         """
-        assert (self.w is not None), "If W has already been sampled, you can only have a log posterior for it."
+        assert (
+            self.w is not None
+        ), "If W has already been sampled, you can only have a log posterior for it."
         if w is None:
             w = self.w
 
-        log_posteriors = -np.log(np.sqrt(2 * self.pi)) - torch.log(self.sigma) - (((w - self.mu) ** 2) / (2 * self.sigma ** 2)) - 0.5
+        log_posteriors = (
+            -np.log(np.sqrt(2 * self.pi))
+            - torch.log(self.sigma)
+            - (((w - self.mu) ** 2) / (2 * self.sigma ** 2))
+            - 0.5
+        )
         return log_posteriors.sum()
 
 
@@ -54,11 +61,10 @@ class PriorDistribution(nn.Module):
     """
     Calculate the scale mixture prior
     """
-    def __init__(self,
-                 pi=1,
-                 sigma1=0.1,
-                 sigma2=0.001,
-                 dist=None):
+
+    def __init__(
+        self, pi: float = 1, sigma1: float = 0.1, sigma2: float = 0.001, dist=None
+    ):
         super().__init__()
 
         if dist is None:

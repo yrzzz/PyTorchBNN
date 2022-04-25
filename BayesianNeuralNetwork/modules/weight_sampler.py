@@ -79,7 +79,7 @@ class PriorDistribution(nn.Module):
             self.dist1 = dist
             self.dist2 = None
 
-    def log_likelihood_prior(self, w=None) -> torch.Tensor:
+    def log_likelihood_prior(self, w: torch.Tensor) -> torch.Tensor:
         """
         Calculates the log likelihood for prior distribution of weights
         :param w: weights

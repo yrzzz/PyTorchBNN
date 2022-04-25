@@ -24,7 +24,7 @@ class BayesianLinear(BayesianModule):
         posterior_mu_init: float = 0,
         posterior_rho_init: float = -5.0,
         prior_dist=None,
-    ) -> None:
+    ):
         """
         :param in_features: input feature numbers for Bayesian Linear layer
         :param out_features: output feature numbers for Bayesian Linear layer

@@ -11,4 +11,4 @@ As the main deep learning framework, Pytorch does not have a library that enable
 5. Write a demo to show users how to use this library 
 
 ## Group member
-Ruizhi Yuan, Tianbei Zhang, Jingwen Deng
+Ruizhi Yuan, Tianbei (Tiya) Zhang, Jingwen Deng

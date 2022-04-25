@@ -1,1 +1,1 @@
-
+from .variational_inference_methods import variational_estimator_set

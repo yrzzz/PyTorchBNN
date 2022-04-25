@@ -36,7 +36,7 @@ class TrainablePosteriorDistribution(nn.Module):
         self.w = self.sigma * self.w_eps + self.mu
         return self.w
 
-    def log_likelihood_posterior(self, w=None) -> torch.Tensor:
+    def log_likelihood_posterior(self, w=None):
         """
         Calculates the log_likelihood for sampled weights as a part of the loss
         :param w: sampled weights
@@ -79,7 +79,7 @@ class PriorDistribution(nn.Module):
             self.dist1 = dist
             self.dist2 = None
 
-    def log_likelihood_prior(self, w: torch.Tensor) -> torch.Tensor:
+    def log_likelihood_prior(self, w):
         """
         Calculates the log likelihood for prior distribution of weights
         :param w: weights

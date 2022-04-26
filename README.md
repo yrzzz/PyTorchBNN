@@ -17,6 +17,15 @@ Documentation for bayesian layers, losses, weight sampler and utils:
 This example briefly show how to use this library. The example will train a Bayesian Neural Network using MNIST dataset, and conduct a classification task. 
 
 ## Import modules from Pytorch and BayesianNeuralNetwork
+As a third-party library, users should claim the system path of the BayesianNeuralNetwork library. Users can use the sys.path.append(path) function to import the directory of the library.
+
+```python
+import sys
+sys.path.append(path)
+# path is the directory of BayesianNeuralNetwork module
+```
+After we import the directory of the BayesianNeuralNetwork module, users can import modules
+
 ```python
 import torch
 import torch.nn as nn

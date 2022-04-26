@@ -76,7 +76,7 @@ optimizer = optim.Adam(classifier.parameters(), lr=0.001)
 criterion = torch.nn.CrossEntropyLoss()
 ```
 ## Training and evaluating loop
-One thing special in bayesian neural network is that the variational inference methods should be used when calculating the loss. That is because there are kl divergence used during the training, which cannot be directly conduct backward propogation. Variational inference methods can solve this problem.
+One thing special in bayesian neural network is that the variational inference methods should be used when calculating the loss. That is because there are kl divergence used during the training, which cannot be directly conduct backward propogation. Variational inference methods can solve this problem. In this example, we use ```sample_elbo()``` method in ```variational_estimator_set``` decorator to calculte the total loss of the model.
 ```python
 iteration = 0
 for epoch in range(100):

@@ -8,8 +8,8 @@ BayesianNeuralNetwork is a simple PyTorch library for creating Bayesian Neural N
 ## Documentation
 
 Documentation for bayesian layers, losses, weight sampler and utils:
- * [Bayesian Layer](doc/layers.md)
- * [Weight samplers](doc/weight_samplers.md)
+ * [Bayesian Layer](doc/layer.md)
+ * [Weight samplers](doc/weight_sampler.md)
  * [Utils (variational inference for bayesian deep learning)](doc/utils.md)
  * [Losses](doc/losses.md)
 

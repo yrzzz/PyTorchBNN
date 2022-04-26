@@ -1,7 +1,6 @@
 # Biostat821-Final-Project
 
-## Target:
-As the main deep learning framework, Pytorch does not have a library that enables users to introduce the Bayesian Neural Network into their models. The target of this project is to build a library that can help users easily integrate Bayesian Neural Networks with Pytorch.
+BayesianNeuralNetwork is a simple PyTorch library for creating Bayesian Neural Network Layers. You can add uncertainty and gather the complexity cost of your model in a simple way that does not affect the interaction between your layers by using BayesianNeuralNetwork layers and utils. You can extend and improve this library by using our core weight sampler classes to add uncertainty to a larger scope of layers in a PyTorch-integrated manner.
 
 ## Function:
 1. Write a documentation that breifly introduce Bayesian Neural Network
